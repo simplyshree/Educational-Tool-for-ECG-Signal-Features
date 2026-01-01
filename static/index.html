@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECG Signal Learning Tool</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+    <h1>ECG Signal Learning Tool</h1>
+    <p>Explore simulated ECG waveforms and understand ECG anatomy.</p>
+
+    <div class="disclaimer">
+        ⚠️ <strong>Educational Use Only</strong><br>
+        This tool uses simulated ECG signals for learning purposes.
+        It does not provide medical diagnosis or advice.
+    </div>
+
+    <div class="inputs">
+        <input type="number" id="age" placeholder="Age (years)">
+        <select id="sex">
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+        <input type="number" id="hr" placeholder="Heart Rate (bpm)">
+        <button onclick="analyzeECG()">Generate ECG</button>
+    </div>
+
+    <canvas id="ecgChart"></canvas>
+
+    <div id="result" class="result"></div>
+
+    <div class="info">
+        <h3>ECG Anatomy (Educational)</h3>
+        <ul>
+            <li><strong>P wave:</strong> Atrial depolarization</li>
+            <li><strong>QRS complex:</strong> Ventricular depolarization</li>
+            <li><strong>T wave:</strong> Ventricular repolarization</li>
+        </ul>
+        <p><em>Wave labels are approximate and shown for learning only.</em></p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
