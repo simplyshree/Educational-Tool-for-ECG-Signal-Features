@@ -29,13 +29,11 @@ def predict(age:int, sex: int , heart_rate:int):
     label = int(model.predict(X)[0])
 
     pattern_labels={
-         0: "Normal ECG pattern (simulation)",
-         1: "Moderate rhythm variation (simulation)",
-         2: "High rhythm variation (simulation)"
-
+         0: "Normal Resting Heart Rate",
+         1: "Variation in Result."
     }
 
     return {
         "ecg": ecg.tolist(),
-        "label": pattern_labels[label]
+        "label": pattern_labels[label],
     }
