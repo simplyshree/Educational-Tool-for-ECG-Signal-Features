@@ -31,10 +31,20 @@
         <input type="number" id="hr" placeholder="Heart Rate (bpm)">
         <button onclick="analyzeECG()">Generate ECG</button>
     </div>
+    <div class="ecg-container"> 
+    <canvas id="ecgChart"></canvas></div>
 
-    <canvas id="ecgChart"></canvas>
+<h3>Extracted ECG Features</h3>
+<ul>
+    <li>HR: <span id="HR">--</span></li>
+    <li>SDNN: <span id="SDNN">--</span></li>
+    <li>RMSSD: <span id="RMSSD">--</span></li>
+    <li>QRS Duration: <span id="QRS">--</span></li>
+    <li>QT Interval: <span id="QT">--</span></li>
+</ul>
 
-    <div id="result" class="result"></div>
+
+
 
     <div class="info">
         <h3>ECG Anatomy (Educational)</h3>

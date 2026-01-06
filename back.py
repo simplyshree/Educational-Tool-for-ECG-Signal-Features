@@ -16,35 +16,49 @@ def generate_ecg(duration=10, sampling_rate=500, heart_rate=70):
 def extract_ecg_features(ecg_signal, fs=500):
 
     try:
-        cleaned = nk.ecg_clean(ecg_signal, sampling_rate = fs)  #reduce noise
+        # Clean ECG
+        cleaned = nk.ecg_clean(ecg_signal, sampling_rate=fs)
 
-        #rpeak
-        peaks,info = nk.ecg_peaks(cleaned, sampling_rate = fs)
-        rpeaks = info['ECG_R_Peaks']
+        # R-peak detection
+        peaks, info = nk.ecg_peaks(cleaned, sampling_rate=fs)
+        rpeaks = info["ECG_R_Peaks"]
 
-        #HRV
+        # Ensure enough peaks for HRV
+        if len(rpeaks) < 2:
+            raise ValueError("Insufficient R-peaks detected")
 
+        # HRV features
         hrv = nk.hrv_time(rpeaks, sampling_rate=fs, show=False)
 
-        #ecg delineations (qrs,qt)
-
-        signals, waves = nk.ecg_delineate(
-            cleaned, rpeaks, sampling_rate=fs, method="dwt"
-        )
+        # Delineation (can fail for synthetic ECG)
+        try:
+            signals, waves = nk.ecg_delineate(
+                cleaned, rpeaks, sampling_rate=fs, method="dwt"
+            )
+            qrs = np.nanmean(waves["ECG_QRS_Duration"])
+            qt = np.nanmean(waves["ECG_QT"])
+        except:
+            qrs = 0.0
+            qt = 0.0
 
         features = {
-
-            "HR": np.mean(hrv["HRV_MeanNN"]),
-            "SDNN" : np.mean(hrv["HRV_SDNN"]),
-            "RMSSD" : np.mean(hrv["HRV_RMSSD"]),
-            "QRS" : np.nanmean(waves["ECG_QRS_Duration"]),
-            "QT": np.nanmean(waves["ECG_QT"])
+            "HR": float(hrv["HRV_MeanNN"].values[0]),
+            "SDNN": float(hrv["HRV_SDNN"].values[0]),
+            "RMSSD": float(hrv["HRV_RMSSD"].values[0]),
+            "QRS": float(qrs),
+            "QT": float(qt)
         }
-        
-        return features
-        
-    except:
 
-        return{"HR":0, "SDNN":0 , "RMSSD":0, "QRS":0, "QT":0}
-    
+        return features
+
+    except Exception as e:
+        print("ECG feature extraction failed:", e)
+        return {
+            "HR": 0.0,
+            "SDNN": 0.0,
+            "RMSSD": 0.0,
+            "QRS": 0.0,
+            "QT": 0.0
+        }
+
     

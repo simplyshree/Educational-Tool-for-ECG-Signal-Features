@@ -18,22 +18,13 @@ features = joblib.load("feature_names.pkl")
 
 @app.post("/analyze")
 
-def predict(age:int, sex: int , heart_rate:int):
+def analyze_ecg(heart_rate : int):
 
-    ecg= generate_ecg(10,500,heart_rate)
-    feats = extract_ecg_features(ecg,500)
-    feats['age'] = age
-    feats['sex'] = sex
+    ecg = generate_ecg(10,500, heart_rate)
+    features = extract_ecg_features(ecg,500)
 
-    X = [[feats[f] for f in features]]
-    label = int(model.predict(X)[0])
 
-    pattern_labels={
-         0: "Normal Resting Heart Rate",
-         1: "Variation in Result."
-    }
-
-    return {
+    return{
         "ecg": ecg.tolist(),
-        "label": pattern_labels[label],
+        "features": features
     }
