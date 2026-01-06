@@ -3,31 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            margin: 40px;
-            max-width: 900px;
-        }
-        h1, h2 {
-            color: #0b5394;
-        }
-        .disclaimer {
-            background-color: #fff3cd;
-            border-left: 6px solid #ffa500;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        ul {
-            margin-left: 20px;
-        }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-    </style>
+
+
 </head>
 <body>
 
