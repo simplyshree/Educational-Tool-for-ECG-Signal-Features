@@ -16,6 +16,8 @@ The tool allows users to generate and visualize synthetic ECG signals and explor
 commonly used ECG-derived features in a simplified and intuitive manner.
 </p>
 
+
+
 <div class="disclaimer">
     <strong>Disclaimer:</strong><br>
     This application uses <strong>synthetic ECG signals only</strong>.  
@@ -31,6 +33,7 @@ commonly used ECG-derived features in a simplified and intuitive manner.
     <li>To demonstrate ECG feature extraction concepts such as HR and HRV</li>
     <li>To introduce backend–frontend integration in biomedical applications</li>
 </ul>
+<img width="1338" height="873" alt="Screenshot 2026-01-06 114228" src="https://github.com/user-attachments/assets/20980924-6504-4873-9268-16edd70c4afb" />
 
 <h2>Key Features</h2>
 <ul>
