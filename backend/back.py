@@ -1,12 +1,14 @@
-import numpy as np;
-import pandas as pd;
+import numpy as np
+import pandas as pd
 print("Completed")
-import neurokit2 as nk;
-from sklearn.ensemble import RandomForestClassifier;
-import joblib;
-import matplotlib.pyplot as plt;
+import neurokit2 as nk
+from sklearn.ensemble import RandomForestClassifier
+import joblib
+import matplotlib.pyplot as plt
+
 from sklearn.preprocessing import StandardScaler;
 def generate_ecg(duration=10, sampling_rate=500, heart_rate=70):
+    import neurokit2 as nk
 
     ecg_signal = nk.ecg_simulate(duration=duration,
                                  sampling_rate=sampling_rate,
