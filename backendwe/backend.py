@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
-from backend.back import generate_ecg, extract_ecg_features
+from backendwe.back import generate_ecg, extract_ecg_features
 
 app = FastAPI()
 
